@@ -8,39 +8,44 @@ typedef struct{
     int parent,lchild,rchild;
 }HTNode,*HuffmanTree;
 typedef char **huffmancode;
-void select(HuffmanTree &HT, int n,int &s1,int &s2)
+int min(HuffmanTree HT,int k)
 {
-    int i, j;
-    for(i = 1;i <= n;i++)
-        if(!HT[i].parent)
-        {
-            s1 = i;
-            break;
-        }
-    for(j = i+1;j <= n;j++)
-        if(!HT[j].parent)
-        {
-            s2 = j;
-            break;
-        }
-    for(i = 1;i <= n;i++)
-        if((HT[i].weight < HT[s1].weight) && (!HT[i].parent) && (s2 != i))
-            s1 = i;
-    for(j = 1;j <= n;j++)
-        if((HT[j].weight < HT[s2].weight) && (!HT[j].parent) && (s1 != j))
-            s2 = j;
-    // 保证s1的weight比s2的小
-    if(HT[s1].weight > HT[s2].weight)
+    int i = 0;
+    int min;        //用来存放weight最小且parent为0的元素的序号
+    int min_weight; //用来存放weight最小且parent为0的元素的weight值
+    
+    //先将第一个parent为0的元素的weight值赋给min_weight,留作以后比较用。
+    //注意，这里不能按照一般的做法，先直接将HT[0].weight赋给min_weight，
+    //因为如果HT[0].weight的值比较小，那么在第一次构造二叉树时就会被选走，
+    //而后续的每一轮选择最小权值构造二叉树的比较还是先用HT[0].weight的值来进行判断，
+    //这样又会再次将其选走，从而产生逻辑上的错误。
+    while(HT[i].parent != 0)
+        i++;
+    min_weight = HT[i].weight;
+    min = i;
+    
+    //选出weight最小且parent为-1的元素，并将其序号赋给min
+    for(;i<k;i++)
     {
-        int tmp = s1;
-        s1 = s2;
-        s2 = tmp;
+        if(HT[i].weight<min_weight && HT[i].parent==0)
+        {
+            min_weight = HT[i].weight;
+            min = i;
+        }
     }
+    
+    //选出weight最小的元素后，将其parent置1，使得下一次比较时将其排除在外。
+    HT[min].parent = 1;
+    
+    return min;
 }
-HuffmanTree creatHuffmanTree(int *wet,int n)
+void select_minium(HuffmanTree HT,int k,int &min1,int &min2)
 {
-    if(n<=1)
-        printf("no need to creat Huffman tree!");
+    min1 = min(HT,k);
+    min2 = min(HT,k);
+}HuffmanTree create_HuffmanTree(int wet[],int n)
+{
+    int i;
     int total = 2*n-1;
     HuffmanTree HT = (HuffmanTree)malloc(total*sizeof(HTNode));
     if(!HT)
@@ -48,34 +53,41 @@ HuffmanTree creatHuffmanTree(int *wet,int n)
         printf("HuffmanTree malloc faild!");
         exit(-1);
     }
-    int i;
-    for(i=1;i<=n;i++)
+    for(i=0;i<n;i++)
     {
-        HT[i].parent=-1;
-        HT[i].lchild=-1;
-        HT[i].rchild=-1;
-        HT[i].weight=*wet;//没有使用wet[0]!
-        wet++;
+        HT[i].parent = 0;
+        HT[i].lchild = 0;
+        HT[i].rchild = 0;
+        HT[i].weight = wet[i];
+        //wet++;
     }
-    for(;i<=total;i++)
+    
+    for(;i<total;i++)
     {
-        HT[i].parent=-1;
-        HT[i].lchild=-1;
-        HT[i].rchild=-1;
-        HT[i].weight=0;
+        HT[i].parent = 0;
+        HT[i].lchild = 0;
+        HT[i].rchild = 0;
+        HT[i].weight = 0;
     }
-    int min1,min2;
+    int min1,min2; //用来保存每一轮选出的两个weight最小且parent为0的节点
+    //每一轮比较后选择出min1和min2构成一课二叉树,最后构成一棵赫夫曼树
     for(i=n;i<total;i++)
     {
-        select(HT,i,min1,min2);
+        select_minium(HT,i,min1,min2);
         HT[min1].parent = i;
         HT[min2].parent = i;
+        //这里左孩子和右孩子可以反过来，构成的也是一棵赫夫曼树，只是所得的编码不同
         HT[i].lchild = min1;
         HT[i].rchild = min2;
         HT[i].weight =HT[min1].weight + HT[min2].weight;
     }
+    for (i=0; i<total; i++) {
+        printf("%d\t  %d\t  %d\t  %d\t \n",HT[i].parent,HT[i].lchild,HT[i].rchild,HT[i].weight);
+    }
     return HT;
 }
+
+
 void Huffmancoding(HuffmanTree HT,huffmancode &HC,int n)
 {
     HC=(huffmancode)malloc((n+1)*sizeof(char*));
@@ -111,13 +123,33 @@ void Huffmancoding(HuffmanTree HT,huffmancode &HC,int n)
     
     free(cd);
 }
-void DispHuffman(huffmancode HC,int n)
+void DispHuffman(huffmancode HC,HuffmanTree HT,int n)
 {
     int i;
     for(i=0;i<n;i++)  //从零开始
     {
+        printf("%c",HT[i].c);
         puts(HC[i]);
     }
+}
+int WPL(HuffmanTree HT,huffmancode HC,int n)
+{
+    int i;
+    int num[n];
+    int wpl = 0;
+    for(i=0;i<n;i++){
+        num[i]=strlen(HC[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        num[i]=num[i]*HT[i].weight;
+    }
+    for(i=0;i<n;i++)
+    {
+        wpl=wpl+num[i];
+    }
+    printf("%d",wpl);
+    return wpl;
 }
 int main(int argc, char const *argv[])
 {
@@ -125,26 +157,28 @@ int main(int argc, char const *argv[])
     int n;
     char zifu[9]="abcdefhi";
     scanf("%d",&n);
-    printf("请输入8位权重\n");
-    int i,wet[9];
-    float tmpwet[9];
+    printf("请输入%d位权重\n",n);
+    int i;
+    int wet[n];
+    float tmpwet[n];
     for(i=0;i<n;i++)
     {
         printf("请输入第%d位元素:",i+1);
         scanf("%f",&tmpwet[i]);
-        //printf("\n");
+        printf("\n");
         tmpwet[i]=tmpwet[i]*100;
         wet[i]=(int)tmpwet[i];
     }
     HuffmanTree HT = nullptr;
     huffmancode HC;
-    creatHuffmanTree(wet,n);
+    HT=create_HuffmanTree(wet,n);
     for(i=0;i<n;i++)
     {
         HT[i].c=zifu[i];
     }
     Huffmancoding(HT,HC,n);
-    DispHuffman(HC,n);
+    DispHuffman(HC,HT,n);
+    WPL(HT, HC, n);
     return 0;
 }
 

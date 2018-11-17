@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.4547549"
+            timestampString = "563803659.785638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "main(int argc, char const *argv[])"
             landmarkType = "9">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.455647"
+            timestampString = "563803659.787028"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "main(int argc, char const *argv[])"
             landmarkType = "9">
          </BreakpointContent>
@@ -38,16 +38,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.456022"
+            timestampString = "563803659.788116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "creatHuffmanTree(int *wet,int n)"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "main(int argc, char const *argv[])"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,28 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.456386"
+            timestampString = "563803659.78917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "creatHuffmanTree(int *wet,int n)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.456742"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "creatHuffmanTree(int *wet,int n)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "create_HuffmanTree(int wet[],int n)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.457096"
+            timestampString = "563803659.790205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "select(HuffmanTree &amp;HT, int n,int &amp;s1,int &amp;s2)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "create_HuffmanTree(int wet[],int n)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.4574471"
+            timestampString = "563803659.791234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "creatHuffmanTree(int *wet,int n)"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "create_HuffmanTree(int wet[],int n)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,12 +106,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.457792"
+            timestampString = "563803659.792241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "creatHuffmanTree(int *wet,int n)"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "Huffmancoding(HuffmanTree HT,huffmancode &amp;HC,int n)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "huffman tree/main.cpp"
+            timestampString = "563803659.793254"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "Huffmancoding(HuffmanTree HT,huffmancode &amp;HC,int n)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "huffman tree/main.cpp"
+            timestampString = "563803659.7943031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "Huffmancoding(HuffmanTree HT,huffmancode &amp;HC,int n)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "huffman tree/main.cpp"
+            timestampString = "563803659.79589"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "Huffmancoding(HuffmanTree HT,huffmancode &amp;HC,int n)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "huffman tree/main.cpp"
+            timestampString = "563803659.797915"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "Huffmancoding(HuffmanTree HT,huffmancode &amp;HC,int n)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "huffman tree/main.cpp"
+            timestampString = "563803659.799741"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "create_HuffmanTree(int wet[],int n)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "huffman tree/main.cpp"
+            timestampString = "563803659.800663"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "create_HuffmanTree(int wet[],int n)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,28 +218,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.458136"
+            timestampString = "563803659.801527"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "creatHuffmanTree(int *wet,int n)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "Huffmancoding(HuffmanTree HT,huffmancode &amp;HC,int n)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "huffman tree/main.cpp"
-            timestampString = "563777016.458564"
+            timestampString = "563803659.8023551"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "creatHuffmanTree(int *wet,int n)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "create_HuffmanTree(int wet[],int n)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "huffman tree/main.cpp"
+            timestampString = "563803659.80336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "create_HuffmanTree(int wet[],int n)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
