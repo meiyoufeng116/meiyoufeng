@@ -90,8 +90,8 @@ void TransposeSMatrix_T(TSMatrix M, TSMatrix *T)
 void FastTransposeSMatrix_T(TSMatrix M, TSMatrix *T)
     {
         int col, t, p, q;
-        int num[M.nu];                            //num[col]表示M第col列中非零元的个数
-        int copt[M.nu];                            //copt[col]表示M第col列第一个非零元在T->data中恰当的位置
+        int num[100];                            //num[col]表示M第col列中非零元的个数
+        int copt[100];                            //copt[col]表示M第col列第一个非零元在T->data中恰当的位置
         
         T->mu = M.nu;
         T->nu = M.mu;

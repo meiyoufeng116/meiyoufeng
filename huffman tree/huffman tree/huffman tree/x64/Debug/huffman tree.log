@@ -1,0 +1,12 @@
+﻿  stdafx.cpp
+  main.cpp
+e:\biancheng\homeworks\meiyoufeng\huffman tree\huffman tree\main.cpp(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+e:\biancheng\homeworks\meiyoufeng\huffman tree\huffman tree\main.cpp(122): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 参见“strcpy”的声明
+e:\biancheng\homeworks\meiyoufeng\huffman tree\huffman tree\main.cpp(142): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\biancheng\homeworks\meiyoufeng\huffman tree\huffman tree\main.cpp(160): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明
+e:\biancheng\homeworks\meiyoufeng\huffman tree\huffman tree\main.cpp(161): warning C4474: printf: 格式字符串中传递的参数太多
+  e:\biancheng\homeworks\meiyoufeng\huffman tree\huffman tree\main.cpp(161): note: 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
+e:\biancheng\homeworks\meiyoufeng\huffman tree\huffman tree\main.cpp(168): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明

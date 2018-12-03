@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <string.h>
 #include <algorithm>
 typedef struct{
     char c;
@@ -135,7 +136,7 @@ void DispHuffman(huffmancode HC,HuffmanTree HT,int n)
 int WPL(HuffmanTree HT,huffmancode HC,int n)
 {
     int i;
-    int num[n];
+    int num[1000];
     int wpl = 0;
     for(i=0;i<n;i++){
         num[i]=strlen(HC[i]);
@@ -159,8 +160,8 @@ int main(int argc, char const *argv[])
     scanf("%d",&n);
     printf("请输入%d位权重\n",n);
     int i;
-    int wet[n];
-    float tmpwet[n];
+    int wet[1000];
+    float tmpwet[1000];
     for(i=0;i<n;i++)
     {
         printf("请输入第%d位元素:",i+1);
