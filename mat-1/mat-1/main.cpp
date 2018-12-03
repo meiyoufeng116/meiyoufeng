@@ -71,10 +71,10 @@ void TransposeSMatrix_T(TSMatrix M, TSMatrix *T)
         
         if(T->tu)
         {
-            q = 1;                                    //q用于T中非零元计数
-            for(col=1; col<=M.nu; ++col)            //col代表M的列，T的行
+            q = 1;                                      //q用于T中非零元计数
+            for(col=1; col<=M.nu; ++col)                //col代表M的列，T的行
             {
-                for(p=1; p<=M.tu; ++p)                //p用于M中非零元计数
+                for(p=1; p<=M.tu; ++p)                  //p用于M中非零元计数
                 {
                     if(M.data[p].j==col)
                     {
@@ -90,7 +90,7 @@ void TransposeSMatrix_T(TSMatrix M, TSMatrix *T)
 void FastTransposeSMatrix_T(TSMatrix M, TSMatrix *T)
     {
         int col, t, p, q;
-        int num[100];                            //num[col]表示M第col列中非零元的个数
+        int num[100];                             //num[col]表示M第col列中非零元的个数
         int copt[100];                            //copt[col]表示M第col列第一个非零元在T->data中恰当的位置
         
         T->mu = M.nu;
@@ -100,10 +100,10 @@ void FastTransposeSMatrix_T(TSMatrix M, TSMatrix *T)
         if(T->tu)
         {
             for(col=1; col<=M.nu; ++col)
-                num[col] = 0;                    //初始化数组num
+                num[col] = 0;                     //初始化数组num
             
             for(t=1; t<=M.tu; ++t)                //t遍历M中三元组
-                num[M.data[t].j]++;                //统计M中每列非零元个数
+                num[M.data[t].j]++;               //统计M中每列非零元个数
             
             copt[1] = 1;
             for(col=2; col<=M.nu; ++col)
@@ -120,7 +120,7 @@ void FastTransposeSMatrix_T(TSMatrix M, TSMatrix *T)
             }
         }
     }
-void PrintSMatrix_T(TSMatrix M)
+void PrintSMatrix_T(TSMatrix M)                 //输出矩阵
 {
     int r, c;
     int k = 1;
@@ -140,7 +140,7 @@ void PrintSMatrix_T(TSMatrix M)
         printf("\n");
     }
 }
-void PrintTriple(TSMatrix M)
+void PrintTriple(TSMatrix M) 
 {
     int i;
     for (i=0; i<=M.tu; i++) {

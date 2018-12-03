@@ -21,7 +21,7 @@ PNODE create_list()
     PNODE pHead =(PNODE)malloc(sizeof(NODE));
     PNODE pCurrent = pHead;
     pCurrent->pNext = NULL;
-    if(NULL == pHead)
+    if(NULL == pHead)                                               //头指针没分配
     {
         printf("pHead malloc failed!");
         exit(-1);
@@ -155,15 +155,12 @@ void sum_people(PNODE pHead)
     return ;
 }
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!"<<std::endl;
     PNODE a;
     a=create_list();
     traverse_list(a);
     sum_people(a);
     //printf("请输入查询人口的城市名");
     //scanf("%s",c);
-    system("pause");
     find_people(a);
     return 0;
 }

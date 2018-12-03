@@ -96,6 +96,7 @@ void ListInsert_L(LinkList &L){
     }*/
 }
 void ListDelete_L(LinkList &L){
+    /*删除一个城市*/
      char a[100];
      printf("请输入删除城市名:");
      scanf("%s",&a);

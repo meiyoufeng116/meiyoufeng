@@ -3,92 +3,123 @@
 //  debug1
 //
 //  Created by Mac on 2018/10/9.
-//  Copyright Â© 2018å¹? Mac. All rights reserved.
+//  Copyright æ¼ 2018éª? Mac. All rights reserved.
 //
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define MAXSTRLEN 100                               //×Ö·û´®×î³¤100
+#define MAXSTRLEN 100                               //å­—ç¬¦ä¸²æœ€é•¿100
 
-typedef char SString[MAXSTRLEN+1];                  /* 0ºÅµ¥Ôª´æ·Å´®µÄ³¤¶È */
+typedef char SString[MAXSTRLEN+1];                  /* 0å·å•å…ƒå­˜æ”¾ä¸²çš„é•¿åº¦ */
 
-  int Index(SString S,SString T,int pos)            //bpËã·¨
+  int Index(SString S,SString T,int pos)            //bpç®—æ³•
   { 
    int i,j;
-   if(1<=pos&&pos<=S[0])                            //ÅĞ¶ÏÊäÈëÎ»ÖÃÊÇ·ñºÏÀí
+   if(1<=pos&&pos<=S[0])                            //åˆ¤æ–­è¾“å…¥ä½ç½®æ˜¯å¦åˆç†
    {
      i=pos;
      j=1;
-     while(i<=S[0]&&j<=T[0])                        //i,jµÄ³¤¶ÈĞ¡ÓÚÁ½¸ö×Ö·û´®µÄ³¤¶È
-       if(S[i]==T[j])                               /* ¼ÌĞø±È½Ïºó¼Ì×Ö·û£¬Èç¹ûÏàµÈ£¬i£¬jÏòºó×ßÒ»¸ñ */
+     while(i<=S[0]&&j<=T[0])                        //i,jçš„é•¿åº¦å°äºä¸¤ä¸ªå­—ç¬¦ä¸²çš„é•¿åº¦
+       if(S[i]==T[j])                               /* ç»§ç»­æ¯”è¾ƒåç»§å­—ç¬¦ï¼Œå¦‚æœç›¸ç­‰ï¼Œiï¼Œjå‘åèµ°ä¸€æ ¼ */
        {
          ++i;                       
          ++j;
        }
-       else                                         /* Ö¸ÕëºóÍËÖØĞÂ¿ªÊ¼Æ¥Åä */
+       else                                         /* æŒ‡é’ˆåé€€é‡æ–°å¼€å§‹åŒ¹é… */
        {
-         i=i-j+2;                                   //Æ¥Åä²»ÕıÈ·£¬j»Øµ½1£¬iÍËÒ»Î»
+         i=i-j+2;                                   //åŒ¹é…ä¸æ­£ç¡®ï¼Œjå›åˆ°1ï¼Œié€€ä¸€ä½
          j=1;
        }
-     if(j>T[0])                                     //Æ¥ÅäÍêÈ«
-       return i-T[0];                               //·µ»ØµÚÒ»¸öÆ¥Åäµ½µÄÎ»ÖÃ
+     if(j>T[0])                                     //åŒ¹é…å®Œå…¨
+       return i-T[0];                               //è¿”å›ç¬¬ä¸€ä¸ªåŒ¹é…åˆ°çš„ä½ç½®
      else
        return 0;
    }
    else
      return 0;
  }
+void get_nextval(SString T,int nextval[])          //æ±‚æ¨¡å¼ä¸²Tçš„nextå‡½æ•°ä¿®æ­£å€¼å¹¶å­˜å…¥æ•°ç»„nextval
+ { 
+   int i=1,j=0;
+   nextval[1]=0;                                  //åˆå§‹åŒ–
+   while(i<T[0])                                  //åŒ¹é…æ²¡æœ‰å®Œæˆæ—¶
+     if(j==0||T[i]==T[j])                         //å¦‚æœjç­‰äº0æˆ–è€…å¤§å®¶ç›¸ç­‰ï¼Œi,jéƒ½å‘åç§»åŠ¨ä¸€ä½
+     {
+       ++i;
+       ++j;
+       if(T[i]!=T[j])                             //å¦‚æœç§»åŠ¨åä¸ç›¸ç­‰ï¼Œæ‰¾åˆ°äº†ä¸€ä¸ªiä½ç½®ä¸Šçš„nextvalçš„æ•°å€¼
+	 nextval[i]=j;
+       else
+	 nextval[i]=nextval[j];                         //å¦‚æœç§»åŠ¨åç›¸ç­‰ï¼Œnextvalä¸Šçš„ä½ç½®å°±æ˜¯jçš„ä½ç½®ä¸Šçš„å€¼
+     }
+     else                                         //ç›´æ¥å›åˆ°ä¸Šä¸€ä¸ªç¬¦åˆä½ç½®å¼€å§‹æ‰¾ï¼Œä»è€Œé¿å…äº†ä¸€ä¸ªä¸ªæ‰¾ï¼Œæé«˜äº†æ•ˆç‡
+       j=nextval[j];
+ }
 
- int StrInsert(SString S,int pos,SString T)          //²åÈë×Ö·û´®º¯Êı£¬´Ós´®ÖĞµÄpos¸ö×Ö·ûÖ®Ç°²åÈët´®
+ int Index_KMP(SString S,SString T,int pos,int next[])      /* åˆ©ç”¨æ¨¡å¼ä¸²Tçš„nextå‡½æ•°æ±‚Tåœ¨ä¸»ä¸²Sä¸­ç¬¬posä¸ªå­—ç¬¦ä¹‹åçš„ä½ç½®çš„KMPç®—æ³•ã€‚ */
+ { 
+   int i=pos,j=1;
+   while(i<=S[0]&&j<=T[0])
+     if(j==0||S[i]==T[j])                             /* ç»§ç»­æ¯”è¾ƒåç»§å­—ç¬¦ */
+     {
+       ++i;
+       ++j;
+     }
+     else                                             /* æ¨¡å¼ä¸²å‘å³ç§»åŠ¨ */
+       j=next[j];
+   if(j>T[0])                                         /* åŒ¹é…æˆåŠŸ */
+     return i-T[0];
+   else
+     return 0;
+ }
+ int StrInsert(SString S,int pos,SString T)          //æ’å…¥å­—ç¬¦ä¸²å‡½æ•°ï¼Œä»sä¸²ä¸­çš„posä¸ªå­—ç¬¦ä¹‹å‰æ’å…¥tä¸²
  { 
    int i;
-   if(pos<1||pos>S[0]+1)                             //ÅĞ¶ÏÊäÈëposÎ»ÖÃÊÇ·ñºÏ·¨
+   if(pos<1||pos>S[0]+1)                             //åˆ¤æ–­è¾“å…¥posä½ç½®æ˜¯å¦åˆæ³•
      return -1;
-   if(S[0]+T[0]<=MAXSTRLEN)                          //ÅĞ¶Ïs´®ºÍt´®³¤¶ÈÃ»ÓĞÔ½½ç
-   { /* ÍêÈ«²åÈë */
-     for(i=S[0];i>=pos;i--)                          //½«s´®ÖĞĞèÒªÌæ»»Î»ÖÃµÄ×Ö·ûÏòºóÒÆT´®³¤¶È
+   if(S[0]+T[0]<=MAXSTRLEN)                          //åˆ¤æ–­sä¸²å’Œtä¸²é•¿åº¦æ²¡æœ‰è¶Šç•Œ
+   { /* å®Œå…¨æ’å…¥ */
+     for(i=S[0];i>=pos;i--)                          //å°†sä¸²ä¸­éœ€è¦æ›¿æ¢ä½ç½®çš„å­—ç¬¦å‘åç§»Tä¸²é•¿åº¦
        S[i+T[0]]=S[i];
-     for(i=pos;i<pos+T[0];i++)                       //½«s´®ÖĞ¿Õ³öÀ´µÄÎ»ÖÃÌæ»»³Ét´® 
+     for(i=pos;i<pos+T[0];i++)                       //å°†sä¸²ä¸­ç©ºå‡ºæ¥çš„ä½ç½®æ›¿æ¢æˆtä¸² 
        S[i]=T[i-pos+1];
      S[0]=S[0]+T[0];
      return 1;
    }
    else
-   { /* ²¿·Ö²åÈë */
-     for(i=MAXSTRLEN;i<=pos;i--)                     //½«´Ópos+t´®³¤¶ÈµÄÎ»ÖÃÏòºóÒÆ£¬¿Õ³ö¿Õ¼ä¸øt´®
+   { /* éƒ¨åˆ†æ’å…¥ */
+     for(i=MAXSTRLEN;i<=pos;i--)                     //å°†ä»pos+tä¸²é•¿åº¦çš„ä½ç½®å‘åç§»ï¼Œç©ºå‡ºç©ºé—´ç»™tä¸²
        S[i]=S[i-T[0]];
-     for(i=pos;i<pos+T[0];i++)                       //½«¿Õ³öµÄÎ»ÖÃ¸øt´®·ÅÉÏ
+     for(i=pos;i<pos+T[0];i++)                       //å°†ç©ºå‡ºçš„ä½ç½®ç»™tä¸²æ”¾ä¸Š
        S[i]=T[i-pos+1];
      S[0]=MAXSTRLEN;
      return 0;
    }
  }
- int StrDelete(SString S,int pos,int len)
- { /* ³õÊ¼Ìõ¼ş: ´®S´æÔÚ,1¡Üpos¡ÜStrLength(S)-len+1 */
-   /* ²Ù×÷½á¹û: ´Ó´®SÖĞÉ¾³ıµÚpos¸ö×Ö·ûÆğ³¤¶ÈÎªlenµÄ×Ó´® */
+ int StrDelete(SString S,int pos,int len)            //ä»ä¸²Sä¸­åˆ é™¤ç¬¬posä¸ªå­—ç¬¦èµ·é•¿åº¦ä¸ºlençš„å­ä¸²
+ { 
    int i;
-   if(pos<1||pos>S[0]-len+1||len<0)
+   if(pos<1||pos>S[0]-len+1||len<0)									 //åˆ¤æ–­posè¾“å…¥æ˜¯å¦åˆç†
      return -1;
-   for(i=pos+len;i<=S[0];i++)
+   for(i=pos+len;i<=S[0];i++)												 //å°†åˆ é™¤ä½æ•°åçš„ä¸»ä¸²å‘å‰å¤å†™
      S[i-len]=S[i];
    S[0]-=len;
    return 1;
  }
-int Replace(SString S,SString T,SString V)
- { /* ³õÊ¼Ìõ¼ş: ´®S,TºÍV´æÔÚ,TÊÇ·Ç¿Õ´®£¨´Ëº¯ÊıÓë´®µÄ´æ´¢½á¹¹ÎŞ¹Ø£© */
-   /* ²Ù×÷½á¹û: ÓÃVÌæ»»Ö÷´®SÖĞ³öÏÖµÄËùÓĞÓëTÏàµÈµÄ²»ÖØµşµÄ×Ó´® */
-   int i=1; /* ´Ó´®SµÄµÚÒ»¸ö×Ö·ûÆğ²éÕÒ´®T */
-   if(!T) /* TÊÇ¿Õ´® */
+int Replace(SString S,SString T,SString V)					//ç”¨Væ›¿æ¢ä¸»ä¸²Sä¸­å‡ºç°çš„æ‰€æœ‰ä¸Tç›¸ç­‰çš„ä¸é‡å çš„å­ä¸²
+ { 
+   int i=1; 																				/* ä»ä¸²Sçš„ç¬¬ä¸€ä¸ªå­—ç¬¦èµ·æŸ¥æ‰¾ä¸²T,è¿™æ˜¯é‰´äºè¯¥ä¸²ç‰¹æ®Šçš„å­˜å‚¨ç»“æ„å¯¼è‡´çš„ï¼Œå¦‚æœä»0å¼€å§‹ä¼šå¾ˆä¸¥é‡ */
+   if(!T)                                           /* Tæ˜¯ç©ºä¸² */
      return -1;
    do
    {
-     i=Index(S,T,i); /* ½á¹ûiÎª´ÓÉÏÒ»¸öiÖ®ºóÕÒµ½µÄ×Ó´®TµÄÎ»ÖÃ */
-     if(i) /* ´®SÖĞ´æÔÚ´®T */
+     i=Index(S,T,i); 																/* ç»“æœiä¸ºä»ä¸Šä¸€ä¸ªiä¹‹åæ‰¾åˆ°çš„å­ä¸²Tçš„ä½ç½® */
+     if(i) 																					/* ä¸²Sä¸­å­˜åœ¨ä¸²T */
      {
-       StrDelete(S,i,T[0]); /* É¾³ı¸Ã´®T */
-       StrInsert(S,i,V); /* ÔÚÔ­´®TµÄÎ»ÖÃ²åÈë´®V */
-       i+=V[0]; /* ÔÚ²åÈëµÄ´®VºóÃæ¼ÌĞø²éÕÒ´®T */
+       StrDelete(S,i,T[0]); 												/* åˆ é™¤è¯¥ä¸²T */
+       StrInsert(S,i,V); 														/* åœ¨åŸä¸²Tçš„ä½ç½®æ’å…¥ä¸²V */
+       i+=V[0]; 																		/* åœ¨æ’å…¥çš„ä¸²Våé¢ç»§ç»­æŸ¥æ‰¾ä¸²T */
      }
    }while(i);
    return 1;
@@ -96,20 +127,20 @@ int Replace(SString S,SString T,SString V)
 
 
 int StrAssign(SString T,char *chars)
- { /* Éú³ÉÒ»¸öÆäÖµµÈÓÚcharsµÄ´®T */
+ { 																									/* ç”Ÿæˆä¸€ä¸ªå…¶å€¼ç­‰äºcharsçš„ä¸²Tï¼Œç”±äºå­—ç¬¦ä¸²çš„ç¬¬ä¸€ä½éœ€è¦æ”¾å®ƒçš„é•¿åº¦ */
    int i;
-   if(strlen(chars)>MAXSTRLEN)
+   if(strlen(chars)>MAXSTRLEN)											/* è¾“å…¥å­—ç¬¦ä¸²è¶…é•¿ */
      return 0;
    else
    {
-     T[0]=strlen(chars);
+     T[0]=strlen(chars);														// ç»™å­—ç¬¦ä¸²çš„ç¬¬ä¸€ä¸ªåœ°å€èµ‹ä¸Šå­—ç¬¦ä¸²çš„é•¿åº¦
      for(i=1;i<=T[0];i++)
-       T[i]=*(chars+i-1);
+       T[i]=*(chars+i-1);														// å°†è¾“å…¥å­—ç¬¦ä¸²æ•°ç»„èµ‹ç»™å­˜å‚¨
      return 1;
    }
  }
  void StrPrint(SString T)
- { /* Êä³ö×Ö·û´®T¡£Áí¼Ó */
+ { 																									/* è¾“å‡ºå­—ç¬¦ä¸²Tã€‚å¦åŠ  */
    int i;
    for(i=1;i<=T[0];i++)
      printf("%c",T[i]);
@@ -120,11 +151,11 @@ int main()
 {
     SString a,b,c;
     char e[101],f[101],g[101];
-    printf("ÇëÊäÈëÔ´×Ö·û´®");
+    printf("please input main strings");
     scanf("%s",e);
-    printf("ÇëÊäÈëÄ£Ê½´®");
+    printf("please input key strings");
     scanf("%s",f);
-    printf("ÇëÊäÈëÌæ»»´®");
+    printf("please input sub strings");
     scanf("%s",g);
     StrAssign(a,e);
     StrAssign(b,f);
